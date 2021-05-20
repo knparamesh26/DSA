@@ -32,6 +32,8 @@ class Stack<T>{
         }
     }
     T pop(){
+        if(Objects.isNull(top)) // when the stack is empty
+            return null;
         T data = top.data;
         top = top.next;
         return data;
@@ -61,6 +63,8 @@ public class ParanthesisChecker {
         for(Character i : expression.toCharArray()){
             if (i==')' || i==']' || i=='}'){
                 Character topElement = paranthesis_stack.pop();
+                if(Objects.isNull(topElement)) // if stack is empty
+                    return false;
                 switch(i){
                     case ')':
                         if(topElement != '(')
